@@ -1,5 +1,6 @@
 import express from 'express';
 import mongoose from 'mongoose';
+import connectDB from './config/db.js';
 
 const PORT = 5000;
 
@@ -7,10 +8,8 @@ const app = express();
 
 app.use(express.json())
 
-mongoose
-        .connect('mongodb://localhost:27017/usersDB')
-        .then(() => console.log('Connected to mongodb'))
-        .catch((err) => console.log("Error connecting to mongodb ",err));
+connectDB();
+
 
 //define schema and model
 const userSchema = new mongoose.Schema({
